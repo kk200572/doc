@@ -1,4 +1,4 @@
-<script>
+
     (function(document) {
         'use strict';
 
@@ -51,4 +51,4 @@
             }
         });
     })(document);
-</script>
+
