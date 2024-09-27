@@ -1,6 +1,6 @@
         const imageDatabase = [
-            { keyword: '貓', url: 'https://images2.imgbox.com/cd/f2/Dsy4Ch98_o.jpeg' },
-            { keyword: '狗', url: 'https://raw.githubusercontent.com/你的用户名/仓库名/分支名/圖片2.jpg' },
+            { keyword: '藍色紳士帽', url: 'https://images2.imgbox.com/cd/f2/Dsy4Ch98_o.jpeg' },
+            { keyword: '白色紳士帽', url: 'https://images2.imgbox.com/9a/aa/ZzGDFwfa_o.jpg' },
             { keyword: '鸟', url: 'https://raw.githubusercontent.com/你的用户名/仓库名/分支名/圖片3.jpg' }
         ];
 
