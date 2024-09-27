@@ -19,11 +19,11 @@
             { keyword: '鸟', url: 'https://raw.githubusercontent.com/你的用户名/仓库名/分支名/圖片3.jpg' }
         ];
 
-    function searchImage() {
+       function searchImage() {
     const keyword = document.getElementById('search').value.trim();
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = ''; // 清空之前的搜索结果
-
+	
     if (keyword === '') {
         // 如果搜索框为空，显示默认图片
         const defaultImage = document.createElement('img');
@@ -31,9 +31,8 @@
         resultDiv.appendChild(defaultImage);
         return;
     }
-
-    // 使用 ^ 和 $ 确保只匹配整个关键字
-    const regex = new RegExp(`^${keyword}$`);
+    // 创建一个正则表达式，确保关键字前后都是非字母字符（如空白）或字符串的开始和结束
+    const regex = new RegExp(`(^|\\s)${keyword}($|\\s)`);
 
     // 搜索图片并显示
     const filteredImages = imageDatabase.filter(image => regex.test(image.keyword));
@@ -50,6 +49,3 @@
         resultDiv.appendChild(noResultText);
     }
 }
-
-
-
