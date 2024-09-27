@@ -20,7 +20,7 @@
         ];
 
     function searchImage() {
-    const keyword = document.getElementById('search').value.trim().toLowerCase(); // 将用户输入转换为小写
+    const keyword = document.getElementById('search').value.trim();
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = ''; // 清空之前的搜索结果
 
@@ -32,8 +32,11 @@
         return;
     }
 
-    // 搜索图片并显示，严格比较关键字
-    const filteredImages = imageDatabase.filter(image => image.keyword.toLowerCase() === keyword);
+    // 使用 ^ 和 $ 确保只匹配整个关键字
+    const regex = new RegExp(`^${keyword}$`);
+
+    // 搜索图片并显示
+    const filteredImages = imageDatabase.filter(image => regex.test(image.keyword));
     
     if (filteredImages.length > 0) {
         filteredImages.forEach(image => {
@@ -47,5 +50,6 @@
         resultDiv.appendChild(noResultText);
     }
 }
+
 
 
