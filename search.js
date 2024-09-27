@@ -22,7 +22,7 @@
         ];
 
         function searchImage() {
-    const keyword = document.getElementById('search').value.trim();
+    const keyword = document.getElementById('search').value.trim().toLowerCase(); // 将用户输入转换为小写
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = ''; // 清空之前的搜索结果
 
@@ -33,21 +33,23 @@
         resultDiv.appendChild(defaultImage);
         return;
     }
-            // 搜索图片并显示（使用 includes() 进行模糊匹配）
-            const filteredImages = imageDatabase.filter(image => image.keyword.toLowerCase().includes(keyword));
 
-            if (filteredImages.length > 0) {
-                filteredImages.forEach(image => {
-                    const imgElement = document.createElement('img');
-                    imgElement.src = image.url;
-                    resultDiv.appendChild(imgElement);
-                });
-            } else {
-                const noResultText = document.createElement('p');
-                noResultText.textContent = '未找到相关图片';
-                resultDiv.appendChild(noResultText);
-            }
-        }
+    // 搜索图片并显示，忽略大小写
+    const filteredImages = imageDatabase.filter(image => image.keyword.toLowerCase().includes(keyword)); // 关键字也转换为小写
+    
+    if (filteredImages.length > 0) {
+        filteredImages.forEach(image => {
+            const imgElement = document.createElement('img');
+            imgElement.src = image.url;
+            resultDiv.appendChild(imgElement);
+        });
+    } else {
+        const noResultText = document.createElement('p');
+        noResultText.textContent = '未找到相关图片';
+        resultDiv.appendChild(noResultText);
+    }
+}
+
 
         // 在页面加载完成后初始化搜索功能
         document.addEventListener('readystatechange', function() {
