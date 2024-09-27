@@ -32,11 +32,8 @@
         return;
     }
 
-    // 创建一个正则表达式，匹配整个字符串（忽略大小写）
-    const regex = new RegExp(`^${keyword}$`, 'i');  // 加入 ^ 和 $ 以确保完全匹配，并使用 'i' 忽略大小写
-
-    // 搜索图片并显示，确保完全匹配
-    const filteredImages = imageDatabase.filter(image => regex.test(image.keyword.toLowerCase())); // 同样将关键字转换为小写
+    // 搜索图片并显示，严格比较关键字
+    const filteredImages = imageDatabase.filter(image => image.keyword.toLowerCase() === keyword);
     
     if (filteredImages.length > 0) {
         filteredImages.forEach(image => {
@@ -50,4 +47,5 @@
         resultDiv.appendChild(noResultText);
     }
 }
+
 
