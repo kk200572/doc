@@ -22,10 +22,17 @@
         ];
 
         function searchImage() {
-            const keyword = document.getElementById('search').value.trim().toLowerCase();
-            const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = ''; // 清空之前的搜索结果
+    const keyword = document.getElementById('search').value.trim();
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = ''; // 清空之前的搜索结果
 
+    if (keyword === '') {
+        // 如果搜索框为空，显示默认图片
+        const defaultImage = document.createElement('img');
+        defaultImage.src = 'https://images2.imgbox.com/1d/c4/rM9dc7bQ_o.jpg'; // 默认图片的 URL
+        resultDiv.appendChild(defaultImage);
+        return;
+    }
             // 搜索图片并显示（使用 includes() 进行模糊匹配）
             const filteredImages = imageDatabase.filter(image => image.keyword.toLowerCase().includes(keyword));
 
