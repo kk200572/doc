@@ -1,4 +1,3 @@
-<script>
         const imageDatabase = [
             { keyword: '貓', url: 'https://images2.imgbox.com/cd/f2/Dsy4Ch98_o.jpeg' },
             { keyword: '狗', url: 'https://raw.githubusercontent.com/你的用户名/仓库名/分支名/圖片2.jpg' },
@@ -25,4 +24,4 @@
                 resultDiv.appendChild(noResultText);
             }
         }
-    </script>
+
