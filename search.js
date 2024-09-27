@@ -49,3 +49,4 @@
         resultDiv.appendChild(noResultText);
     }
 }
+})(document);
