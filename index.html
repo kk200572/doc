@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态生成表格代码</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .output {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            white-space: pre-wrap; /* 保持格式 */
+            max-height: 300px; /* 限制最大高度 */
+            overflow-y: auto; /* 添加滚动条 */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>生成表格代码</h1>
+    <label for="text1">输入名称 (text1):</label>
+    <input type="text" id="text1" placeholder="输入名称">
+    <br><br>
+    <label for="text2">输入链接 (text2):</label>
+    <input type="text" id="text2" placeholder="输入超链接">
+    <br><br>
+    <button id="generateBtn">提交</button>
+    <button id="copyAllBtn">复制所有代码</button>
+
+    <h2>生成的表格代码：</h2>
+    <div class="output" id="output"></div>
+
+    <script>
+        const output = document.getElementById('output');
+        const codes = []; // 存储生成的代码
+
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            const text1 = document.getElementById('text1').value;
+            const text2 = document.getElementById('text2').value;
+
+            if (text1 && text2) {
+                const generatedCode = `<div class="image-item" data-name="${text1}">
+    <a href="${text2}" target="_blank">${text1}</a>
+    <p>${text1}</p>
+</div>`;
+                
+                codes.push(generatedCode); // 将生成的代码添加到数组中
+                
+                // 更新输出区域，限制显示最近的 20 个代码
+                updateOutput();
+                // 清空输入框
+                document.getElementById('text1').value = '';
+                document.getElementById('text2').value = '';
+            } else {
+                alert("请确保两个输入框都有值！");
+            }
+        });
+
+        document.getElementById('copyAllBtn').addEventListener('click', function() {
+            copyAllToClipboard();
+        });
+
+        function updateOutput() {
+            output.innerHTML = ''; // 清空输出区域
+            // 生成输出的代码项
+            codes.slice(-20).forEach(code => { // 更改为最近的 20 个代码
+                const codeItem = document.createElement('pre');
+                codeItem.textContent = code; // 使用 textContent 防止 HTML 被解析
+                output.appendChild(codeItem);
+            });
+        }
+
+        function copyAllToClipboard() {
+            const allCodes = codes.slice(-20).join('\n'); // 获取最近的 20 个代码
+            navigator.clipboard.writeText(allCodes).then(() => {
+                alert("所有代码已复制到剪贴板！");
+            }).catch(err => {
+                console.error("复制失败:", err);
+            });
+        }
+    </script>
+
+</body>
+</html>
